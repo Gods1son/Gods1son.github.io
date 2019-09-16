@@ -6,6 +6,33 @@
   <h1>Link to unscramble</h1>
 </body>
   <script>
-    window.location.href = "https://play.google.com/store/apps/details?id=com.edjufun.unscramble";
+    function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    return "unknown";
+}
+    var os = getMobileOperatingSystem();
+    if(os == "Android"){
+        window.location.href = "https://play.google.com/store/apps/details?id=com.edjufun.unscramble";
+    }else if(os == "iOS"){
+        window.location.href = "https://apps.apple.com/app/id1478760324";
+    }else{
+        window.location.href = "https://play.google.com/store/apps/details?id=com.edjufun.unscramble";
+    }
+    
   </script>
 </html>
